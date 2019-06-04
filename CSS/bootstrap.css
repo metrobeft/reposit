@@ -10,6 +10,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -10754,4 +10755,22 @@ header.masthead h1 {
 
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
+}
+
+
+/*   
+Plug para fixar o Carrossel no botton do site
+*/
+
+#home {
+  width: 100%;
+  height: 100vh;
+}
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.disply-table {
+  display: table;
+  height: 100vh;
 }

@@ -1,0 +1,19 @@
+/*   
+Plug para fixar o Carrossel no botton do site
+*/
+
+.img-carrossel {
+    object-fit: cover; 
+    height: 100vh;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.disply-table {
+    display: table;
+    height: 100vh;
+}
+

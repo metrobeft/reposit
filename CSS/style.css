@@ -1,7 +1,3 @@
-/*   
-Plug para fixar o Carrossel no botton do site
-*/
-
 .img-carrossel {
     object-fit: cover; 
     height: 100vh;

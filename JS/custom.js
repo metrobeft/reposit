@@ -1,165 +1,396 @@
-// JavaScript Document
+$(document).ready(function()
+{
+	"use strict";
 
-$(window).load(function () {
-    "use strict";
-    // makes sure the whole site is loaded
-    $('#status').fadeOut(); // will first fade out the loading animation
-    $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
-    $('body').delay(350).css({
-        'overflow': 'visible'
-    });
-})
+	/* 
 
-$(document).ready(function () {
-    "use strict";
+	1. Vars and Inits
 
-    // scroll menu
-    var sections = $('.section'),
-        nav = $('.navbar-fixed-top,footer'),
-        nav_height = nav.outerHeight();
+	*/
 
-    $(window).on('scroll', function () {
-        var cur_pos = $(this).scrollTop();
+	var searchActive = false;
+	var menuActive = false;
+	var header = $('.header');
+	var ctrl = new ScrollMagic.Controller();
 
-        sections.each(function () {
-            var top = $(this).offset().top - nav_height,
-                bottom = top + $(this).outerHeight();
+	setHeader();
 
-            if (cur_pos >= top && cur_pos <= bottom) {
-                nav.find('a').removeClass('active');
-                sections.removeClass('active');
+	$(window).on('resize', function()
+	{
+		setHeader();
+	});
 
-                $(this).addClass('active');
-                nav.find('a[href="#' + $(this).attr('id') + '"]').addClass('active');
-            }
-        });
-    });
+	$(document).on('scroll', function()
+	{
+		setHeader();
+	});
 
-    nav.find('a').on('click', function () {
-        var $el = $(this),
-            id = $el.attr('href');
+	initMainSlider();
+	initDoubleArrow();
+	initSearchForm();
+	initHamburger();
+	initVSlider();
+	initServicesSlider();
+	initParallax();
+	initScrolling();
 
-        $('html, body').animate({
-            scrollTop: $(id).offset().top - nav_height + 2
-        }, 600);
+	/* 
 
-        return false;
-    });
+	2. Set Header
 
+	*/
 
-    // Menu opacity
-    if ($(window).scrollTop() > 80) {
-        $(".navbar-fixed-top").addClass("bg-nav");
-    } else {
-        $(".navbar-fixed-top").removeClass("bg-nav");
+	function setHeader()
+	{
+		if(window.innerWidth < 992)
+		{
+			if($(window).scrollTop() > 100)
+			{
+				header.addClass('scrolled');
+			}
+			else
+			{
+				header.removeClass('scrolled');
+			}
+		}
+		else
+		{
+			if($(window).scrollTop() > 100)
+			{
+				header.addClass('scrolled');
+			}
+			else
+			{
+				header.removeClass('scrolled');
+			}
+		}
+		if(window.innerWidth > 991 && menuActive)
+		{
+			closeMenu();
+		}
+	}
+
+	/* 
+
+	4. Init Main Slider
+
+	*/
+
+	function initMainSlider()
+	{
+		if($('.hero_slider').length)
+		{
+			var heroSlider = $('.hero_slider');
+			heroSlider.owlCarousel(
+			{
+				items: 1,
+				loop: true,
+				autoplay:false,
+				animateOut: 'slideOutDown',
+				animateIn: 'flipInX',
+				dots:false,
+				nav:false,
+				autoplayTimeout:5000,
+				autoplaySpeed:800,
+				smartSpeed:800
+			});
+
+			if($('.hero_slider_prev').length)
+			{
+				var prev = $('.hero_slider_prev');
+
+				prev.on('click', function()
+				{
+					heroSlider.trigger('prev.owl.carousel');
+				});
+			}
+
+			if($('.hero_slider_next').length)
+			{
+				var prev = $('.hero_slider_next');
+
+				prev.on('click', function()
+				{
+					heroSlider.trigger('next.owl.carousel');
+				});
+			}
+		}
+	}
+
+	function initDoubleArrow()
+	{
+		if($('.double_arrow').length)
+		{
+			$('.double_arrow').on('click', function()
+			{
+
+			});
+		}
+	}
+
+	function initSearchForm()
+	{
+		if($('.search_form').length)
+		{
+			var searchForm = $('.search_form');
+			var searchInput = $('.search_input');
+			var searchButton = $('.search_button');
+
+			searchButton.on('click', function(event)
+			{
+				event.stopPropagation();
+
+				if(!searchActive)
+				{
+					searchForm.addClass('active');
+					searchActive = true;
+					searchInput.focus();
+
+					$(document).one('click', function closeForm(e)
+					{
+						if($(e.target).hasClass('search_input'))
+						{
+							$(document).one('click', closeForm);
+						}
+						else
+						{
+							searchForm.removeClass('active');
+							searchActive = false;
+						}
+					});
+				}
+				else
+				{
+					searchForm.removeClass('active');
+					searchActive = false;
+				}
+			});	
+		}
+	}
+
+	/* 
+
+	7. Init Hamburger
+
+	*/
+
+	function initHamburger()
+	{
+		if($('.hamburger_container').length)
+		{
+			var hamb = $('.hamburger_container');
+
+			hamb.on('click', function(event)
+			{
+				event.stopPropagation();
+
+				if(!menuActive)
+				{
+					openMenu();
+					
+					$(document).one('click', function cls(e)
+					{
+						if($(e.target).hasClass('menu_mm'))
+						{
+							$(document).one('click', cls);
+						}
+						else
+						{
+							closeMenu();
+						}
+					});
+				}
+				else
+				{
+					$('.menu_container').removeClass('active');
+					menuActive = false;
+				}
+			});
+		}
+	}
+
+	function openMenu()
+	{
+		$('.menu_container').addClass('active');
+		menuActive = true;
+	}
+
+	function closeMenu()
+	{
+		$('.menu_container').removeClass('active');
+		menuActive = false;
+	}
+
+	/* 
+
+	8. Init Vertical Slider
+
+	*/
+
+	function initVSlider()
+	{
+		if($('.v_slider').length)
+		{
+			var vSlider = $('.v_slider');
+
+			vSlider.slick(
+			{
+				infinite: false,
+				vertical: true,
+				arrows: false,
+				draggable: false,
+				dots: true,
+				responsive:
+				[
+					{
+						breakpoint: 575,
+						settings: 
+						{
+							draggable: true,
+							vertical: false,
+							dots: false
+						}
+					}
+				]
+			});
+		}
+	}
+
+	/* 
+
+	9. Init Services Slider
+
+	*/
+
+	function initServicesSlider()
+	{
+		if($('.services_slider').length)
+		{
+			var servicesSlider = $('.services_slider');
+
+			servicesSlider.owlCarousel(
+			{
+				loop: true,
+				center: true,
+				margin: 67,
+				stagePadding: 153,
+				mouseDrag: true,
+				dots: true,
+				dotsSpeed: 600,
+				responsive:
+				{
+					0:
+					{
+						items:1,
+						margin: 15,
+						center: false,
+						stagePadding: 15,
+						dots: false
+					},
+					575:
+					{
+						items:3,
+						center: true,
+						stagePadding: 350
+					},
+					1440:
+					{
+						items:4,
+						margin: 67,
+						stagePadding: 153,
+						dots: true,
+					}
+				}
+			});
+
+			// Handle Left Nav Arrow
+			if($('.services_slider_nav_left').length)
+			{
+				$('.services_slider_nav_left').on('click', function()
+				{
+					servicesSlider.trigger('prev.owl.carousel');
+				});
+			}
+
+			// Handle Right Nav Arrow
+			if($('.services_slider_nav_right').length)
+			{
+				$('.services_slider_nav_right').on('click', function()
+				{
+					servicesSlider.trigger('next.owl.carousel');
+				});
+			}
+		}
+	}
+
+	/* 
+
+	10. Init Parallax
+
+	*/
+
+	function initParallax()
+	{
+		// Add parallax effect to home slider
+		if($('.slider_prlx').length)
+		{
+			var homeBcg = $('.slider_prlx');
+
+			var homeBcgScene = new ScrollMagic.Scene({
+		        triggerElement: homeBcg,
+		        triggerHook: 1,
+		        duration: "100%"
+		    })
+		    .setTween(TweenMax.to(homeBcg, 1, {y: '15%', ease:Power0.easeNone}))
+		    .addTo(ctrl);
+		}
+
+		// Add parallax effect to every element with class prlx
+		// Add class prlx_parent to the parent of the element
+		if($('.prlx_parent').length && $('.prlx').length)
+		{
+			var elements = $('.prlx_parent');
+
+			elements.each(function()
+			{
+				var ele = this;
+				var bcg = $(ele).find('.prlx');
+
+				var slideParallaxScene = new ScrollMagic.Scene({
+			        triggerElement: ele,
+			        triggerHook: 1,
+			        duration: "200%"
+			    })
+			    .setTween(TweenMax.from(bcg, 1, {y: '-30%', ease:Power0.easeNone}))
+			    .addTo(ctrl);
+			});
+		}
+	}
+
+	/*
+
+	11. Init Scrolling
+
+	*/
+
+	function initScrolling()
+    {
+    	if($('.nav_links').length)
+    	{
+    		
+			/* Clicking on any element with class .nav_links scrolls down to the element set in the data-scroll-to value */
+			
+    		var links = $('.nav_links');
+	    	links.each(function()
+	    	{
+	    		var ele = $(this);
+	    		var target = ele.data('scroll-to');
+	    		ele.on('click', function(e)
+	    		{
+	    			e.preventDefault();
+	    			$(window).scrollTo(target, 1500, {offset: -80, easing: 'easeInOutQuart'});
+	    		});
+	    	});
+    	}	
     }
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 80) {
-            $(".navbar-fixed-top").addClass("bg-nav");
-        } else {
-            $(".navbar-fixed-top").removeClass("bg-nav");
-        }
-    });
-
-
-
-    // Parallax
-    var parallax = function () {
-        $(window).stellar();
-    };
-
-    $(function () {
-        parallax();
-    });
-
-    // AOS
-    AOS.init({
-        duration: 1200,
-        once: true,
-        disable: 'mobile'
-    });
-
-    //  isotope
-    $('#projects').waitForImages(function () {
-        var $container = $('.portfolio_container');
-        $container.isotope({
-            filter: '*',
-        });
-
-        $('.portfolio_filter a').click(function () {
-            $('.portfolio_filter .active').removeClass('active');
-            $(this).addClass('active');
-
-            var selector = $(this).attr('data-filter');
-            $container.isotope({
-                filter: selector,
-                animationOptions: {
-                    duration: 500,
-                    animationEngine: "jquery"
-                }
-            });
-            return false;
-        });
-
-    });
-
-    //animatedModal
-    $("#demo01,#demo02,#demo03,#demo04,#demo05,#demo06,#demo07,#demo08,#demo09").animatedModal();
-
-    // Contact Form 	
-
-    // validate contact form
-    $(function () {
-        $('#contact-form').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                email: {
-                    required: true
-                },
-                phone: {
-                    required: false
-                },
-                message: {
-                    required: true
-                }
-
-            },
-            messages: {
-                name: {
-                    required: "This field is required",
-                    minlength: "your name must consist of at least 2 characters"
-                },
-                email: {
-                    required: "This field is required"
-                },
-                message: {
-                    required: "This field is required"
-                }
-            },
-            submitHandler: function (form) {
-                $(form).ajaxSubmit({
-                    type: "POST",
-                    data: $(form).serialize(),
-                    url: "process.php",
-                    success: function () {
-                        $('#contact :input').attr('disabled', 'disabled');
-                        $('#contact').fadeTo("slow", 1, function () {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor', 'default');
-                            $('#success').fadeIn();
-                        });
-                    },
-                    error: function () {
-                        $('#contact').fadeTo("slow", 1, function () {
-                            $('#error').fadeIn();
-                        });
-                    }
-                });
-            }
-        });
-
-    });
 });

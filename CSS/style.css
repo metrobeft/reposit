@@ -1,0 +1,12 @@
+.img-carrossel {
+    object-fit: cover; 
+    height: 100vh;
+}
+
+.bg-footer {
+    background-color: #003366;
+}
+
+.bg-copyright {
+    background-color: #001a33;
+}

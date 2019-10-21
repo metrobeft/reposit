@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+
+<html>
+	
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	       	
+        <link rel="stylesheet" href="css/demo.css">
+		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	</head>
+	
+<body>
+	
+	<div class="meny">
+
+		<h2>Menu</h2>
+
+		<ul>
+            <li><font size="3px">Início</font></li><br />
+			<li><a href=""><font size="3px">menu 1</font></a></li><br />
+            <li><a href=""><font size="3px">menu 2</font></a></li><br />
+            <li><a href=""><font size="3px">menu 3</font></a></li><br />
+            <li><a href=""><font size="3px">menu 4</font></a></li><br />
+		</ul>
+
+	</div>
+
+	<div class="meny-arrow"></div> <!-- MERAMENTE A SETA PARA INDICAR QUE HA UM MENU LATERAL -->
+
+	<div class="contents">
+
+		<article>
+
+			<h1>Início</h1>
+
+       		<p>Bem Vindo A  Adminstração Senhor(a): <strong>Nome da pessoa</strong></p>
+
+        	Informações Da Sessão:
+
+        	<ul>
+            	<li><strong>ID:</strong>Nivel de Administrador</li>
+            	<li><strong>Login:</strong>Email do administrador</li>
+        	</ul>
+			
+		<BR/>
+
+		</article>
+			
+           
+	</div>
+
+	<!-- sCRIPT PARA O FUNCIONAMENTO DO MENU -->
+
+	<script src="js/meny.js"></script>
+
+		<script>
+			// Criar uma instancia 
+			var meny = Meny.create({
+				// O nome do elemento que sera animada na tela 
+				menuElement: document.querySelector( '.meny' ),
+
+				// O conteudo que e empurrado para o lado enquanto Menu e ativo
+				contentsElement: document.querySelector( '.contents' ),
+
+				// Posição do Menu  (top / right / bottom / left)
+				position: Meny.getQuery().p || 'left',
+
+				//  A altura do menu (quando se utiliza top/bottom)
+				height: 260,
+
+				// A largura do menu (quando usar left/right)
+				width: 260,
+
+				// distancia em pixel da abertura do efeito
+				threshold: 40
+			});
+			
+		</script>
+
+	</body>
+	
+</html>

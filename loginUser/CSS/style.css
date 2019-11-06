@@ -67,6 +67,11 @@ input[type=password]:focus{
     border: 1px solid rgb(22, 47, 117);
 }
 
+a{
+    text-decoration: none;
+    color: rgb(22, 47, 117);
+}
+
 
 @media (max-width: 576px){
     .caixa-login{

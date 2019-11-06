@@ -3,26 +3,38 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IEEE - Login</title>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>
     <section>
-        <div class="caixa-login" id="divtest">
-            <form>
-                <img class="img" src="img/logo@2x.png">
+        <div id="login" style="display: block" class="caixa-login" >           
+                <img id="img" class="img" src="img/logo@2x.png">
                 <input type="text" placeholder="Usuário" id="usuario">
 
                 <input type="password" placeholder="Senha" id="senha">
 
                 <button>Entrar</button>
-                
-                <center><a href="index.html">Esqueceu sua senha?</a></center>
-            </form>
+                <button onclick="cadastrarNovo()">Cadastrar</button>
+
+                <center><a href="index.html">Esqueceu sua senha?</a></center>            
+        </div>
+
+        <div style="display: none" class="caixa-login" id="cadastro">
+                <input type="text" placeholder="Nome completo" id="nomeCadastro">
+                <input type="text" placeholder="Usuário" id="usuarioCadastro">
+                <input type="password" placeholder="Senha" id="senhaCadastro">
+                <input type="password" placeholder="Confirmação de senha" id="senhaCadastroConfirmacao">
+                <input type="email" placeholder="Email" id="emailCadastro">
+                <button onclick="cadastrarConcluido()">Cadastrar</button>
+
         </div>
 
 
 </body>
+
+<script src="JS/loginUser.js"></script>
+
 
 </html>

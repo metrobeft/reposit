@@ -13,7 +13,7 @@ section{
 
 .caixa-login{
     position: absolute;
-    top: 20%;
+    top: 5%;
     left: 40%;
     width:380px;
     box-sizing: border-box;
@@ -64,6 +64,10 @@ input[type=text]:focus{
 }
 
 input[type=password]:focus{
+    border: 1px solid rgb(22, 47, 117);
+}
+
+input[type=email]:focus{
     border: 1px solid rgb(22, 47, 117);
 }
 

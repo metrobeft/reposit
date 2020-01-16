@@ -1,88 +1,39 @@
-body{
-    margin: 0;
-    background-color: rgb(22, 47, 117);
-}
-
-section{
-    width: 100%;
-    height: 100vh;
-    
-}
-.CaixaCentral{
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    margin-left: -190px;
-    width:380px;
-    box-sizing: border-box;
-    padding: 60px 30px;
-    transition: background-color 0.5s linear;
-    background-color: white;
-    border-radius: 30px;
-    box-shadow:  0 5px 25px rgb(90, 90, 90);
-    transition: 500ms;
-    
-    
-}
-
-.CaixaCentral:hover{
-    box-shadow:  0 2px 10px white;
-    transition: 300ms;
-    
-              
-}
-
-.CaixaCentral input, button{
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    border-radius: 20px;
-    border: 0px;
-    background-color: rgb(227, 227, 228);
-}
-
-.CaixaCentral button{
-    background-color: rgb(22, 47, 117, 0.9);
-    color: white;
-}
-
-.CaixaCentral button:hover{
-    background-color: rgb(22, 47, 117, 0.6);
-    transition: 500ms;
-}
-
-.CaixaCentral button:active{
-    transform: translateY(4px);
-}
-
-input[type=text]:focus{
-    border: 1px solid rgb(22, 47, 117);
-}
-
-input[type=password]:focus{
-    border: 1px solid rgb(22, 47, 117);
-}
-
 .navbar li{
-    margin-left: 40px;
+  margin-left: 40px;
 }
-    
 
-@media (max-width: 576px){
-    .caixa-login{
-        top: 0%;
-        left: 0%;
-        padding: 60px 30px;
-        background-color: white;
-        box-shadow: none;
-        width: 350px;
-        
-        
-    }
-    body{
-        background-color: white;
-    }
+.masthead {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 35rem;
+  padding: 15rem 0;
+  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0%, rgba(22, 22, 22, 0.7) 75%, #161616 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
 
+@media (min-width: 768px) {
+  .masthead h1 {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead {
+    height: 100vh;
+    padding: 0;
+  }
+  .masthead h1 {
+    font-size: 6.5rem;
+    line-height: 6.5rem;
+    letter-spacing: 0.8rem;
+  }
+  .masthead h2 {
+    max-width: 30rem;
+    font-size: 1.25rem;
+  }
 }
